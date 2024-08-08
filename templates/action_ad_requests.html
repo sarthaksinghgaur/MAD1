@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Action Ad Requests</title>
+</head>
+<body>
+    <h1>Action Ad Requests</h1>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Messages</th>
+            <th>Requirements</th>
+            <th>Payment Amount</th>
+            <th>Status</th>
+        </tr>
+        <tr>
+            <td>{{ ad_request.name }}</td>
+            <td>{{ ad_request.messages }}</td>
+            <td>{{ ad_request.requirements }}</td>
+            <td>{{ ad_request.payment_amount }}</td>
+            <td>{{ ad_request.status }}</td>
+        </tr>
+    </table>
+    <form method="POST">
+        <button type="submit" name="action" value="accept">Accept</button>
+        <button type="submit" name="action" value="reject">Reject</button>
+        <input type="number" name="new_payment_amount" placeholder="New Payment Amount">
+        <button type="submit" name="action" value="negotiate">Negotiate</button>
+    </form>
+    <a href="{{ url_for('influencer_dashboard') }}">Back to Dashboard</a>
+</body>
+</html>

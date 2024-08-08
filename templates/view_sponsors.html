@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Sponsors</title>
+</head>
+<body>
+    <h1>Sponsors</h1>
+    <ul>
+        {% for sponsor in sponsors %}
+        <li>
+            {{ sponsor.company_name }} - {{ 'Flagged' if sponsor.flagged else 'Not Flagged' }}
+            <a href="{{ url_for('admin_edit_sponsor', sponsor_id=sponsor.id) }}">Edit</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Influencers</title>
+</head>
+<body>
+    <h1>Influencers</h1>
+    <ul>
+        {% for influencer in influencers %}
+        <li>
+            {{ influencer.name }} - {{ 'Flagged' if influencer.flagged else 'Not Flagged' }}
+            <a href="{{ url_for('admin_edit_influencer', influencer_id=influencer.id) }}">Edit</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

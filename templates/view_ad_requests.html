@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Ad Requests</title>
+</head>
+<body>
+    <h1>Ad Requests</h1>
+    <ul>
+        {% for ad_request in ad_requests %}
+        <li>
+            {{ ad_request.name }} - {{ ad_request.status }}
+            <a href="{{ url_for('admin_edit_ad_request', ad_request_id=ad_request.id) }}">Edit</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

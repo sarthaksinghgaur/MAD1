@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Create Campaign</title>
+  </head>
+  <body>
+    <h1>Create Campaign</h1>
+    
+    <!-- Flash messages section -->
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class="flashes">
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    
+    <form method="POST" action="{{ url_for('create_campaign') }}">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required><br>
+      
+      <label for="description">Description:</label>
+      <textarea id="description" name="description" required></textarea><br>
+      
+      <label for="start_date">Start Date:</label>
+      <input type="date" id="start_date" name="start_date" required><br>
+      
+      <label for="end_date">End Date:</label>
+      <input type="date" id="end_date" name="end_date" required><br>
+      
+      <label for="budget">Budget:</label>
+      <input type="number" id="budget" name="budget" required><br>
+      
+      <label for="visibility">Visibility:</label>
+      <select id="visibility" name="visibility" required>
+        <option value="public">Public</option>
+        <option value="private">Private</option>
+      </select><br>
+      
+      <label for="goals">Goals:</label>
+      <textarea id="goals" name="goals" required></textarea><br>
+      
+      <button type="submit">Create Campaign</button>
+    </form>
+  </body>
+</html>

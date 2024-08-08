@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Find Campaigns</title>
+</head>
+<body>
+    <h1>Find Campaigns</h1>
+    <form method="POST">
+        <label for="niche">Niche:</label>
+        <input type="text" id="niche" name="niche">
+        
+        <label for="relevance">Relevance:</label>
+        <input type="text" id="relevance" name="relevance">
+        
+        <label for="start_date">Start Date:</label>
+        <input type="date" id="start_date" name="start_date">
+        
+        <label for="end_date">End Date:</label>
+        <input type="date" id="end_date" name="end_date">
+        
+        <label for="budget">Budget:</label>
+        <input type="number" id="budget" name="budget">
+        
+        <button type="submit">Search</button>
+    </form>
+
+    <h2>Search Results</h2>
+    <table>
+        <tr>
+            <th>Campaign Name</th>
+            <th>Description</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Budget</th>
+        </tr>
+        {% for campaign in campaigns %}
+        <tr>
+            <td>{{ campaign.name }}</td>
+            <td>{{ campaign.description }}</td>
+            <td>{{ campaign.start_date }}</td>
+            <td>{{ campaign.end_date }}</td>
+            <td>{{ campaign.budget }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{{ url_for('influencer_dashboard') }}">Back to Dashboard</a>
+</body>
+</html>

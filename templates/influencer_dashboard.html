@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Influencer Dashboard</title>
+</head>
+<body>
+    <h1>Influencer Dashboard</h1>
+    <h2>Welcome, {{ influencer.name }}</h2>
+
+    <a href="{{ url_for('find_campaigns') }}">Find Campaigns</a> <!-- Added Find Campaigns button -->
+    
+    <h2>Campaigns</h2>
+    <table>
+        <tr>
+            <th>Campaign Name</th>
+            <th>Description</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Budget</th>
+        </tr>
+        {% for campaign in campaigns %}
+        <tr>
+            <td>{{ campaign.name }}</td>
+            <td>{{ campaign.description }}</td>
+            <td>{{ campaign.start_date }}</td>
+            <td>{{ campaign.end_date }}</td>
+            <td>{{ campaign.budget }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Ad Requests</h2>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Messages</th>
+            <th>Requirements</th>
+            <th>Payment Amount</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+        {% for ad_request in ad_requests %}
+        <tr>
+            <td>{{ ad_request.name }}</td>
+            <td>{{ ad_request.messages }}</td>
+            <td>{{ ad_request.requirements }}</td>
+            <td>{{ ad_request.payment_amount }}</td>
+            <td>{{ ad_request.status }}</td>
+            <td>
+                <a href="{{ url_for('action_ad_request', id=ad_request.id) }}">Take Action</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <button onclick="location.href='{{ url_for('logout') }}'">Logout</button>
+</body>
+</html>

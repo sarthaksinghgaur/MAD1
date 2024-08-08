@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Sponsor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Edit Sponsor</h1>
+        <!-- Flash messages section -->
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <ul class="flashes">
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
+    <form method="POST">
+        <div>
+            <label for="company_name">Company Name:</label>
+            <input type="text" id="company_name" name="company_name" value="{{ sponsor.company_name }}" required>
+        </div>
+        <div>
+            <label for="industry">Industry:</label>
+            <input type="text" id="industry" name="industry" value="{{ sponsor.industry }}" required>
+        </div>
+        <div>
+            <label for="budget">Budget:</label>
+            <input type="number" id="budget" name="budget" value="{{ sponsor.budget }}" required>
+        </div>
+        <div>
+            <label for="flagged">Flagged:</label>
+            <input type="checkbox" id="flagged" name="flagged" {% if sponsor.flagged %}checked{% endif %}>
+        </div>
+        <div>
+            <button type="submit">Update Sponsor</button>
+        </div>
+    </form>
+    <a href="{{ url_for('admin_view_sponsors') }}">Back to Sponsors List</a>
+</body>
+</html>

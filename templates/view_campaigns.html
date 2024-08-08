@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Campaigns</title>
+</head>
+<body>
+    <h1>Campaigns</h1>
+    <ul>
+        {% for campaign in campaigns %}
+        <li>
+            {{ campaign.name }} - {{ campaign.status }}
+            <a href="{{ url_for('admin_edit_campaign', campaign_id=campaign.id) }}">Edit</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
