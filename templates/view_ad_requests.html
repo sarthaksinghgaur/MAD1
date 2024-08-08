@@ -11,8 +11,12 @@
         <li>
             {{ ad_request.name }} - {{ ad_request.status }}
             <a href="{{ url_for('admin_edit_ad_request', ad_request_id=ad_request.id) }}">Edit</a>
+            <form action="{{ url_for('admin_delete_ad_request', ad_request_id=ad_request.id) }}" method="post" style="display:inline;">
+                <button type="submit">Delete</button>
+            </form>
         </li>
         {% endfor %}
     </ul>
+    <a href="{{ url_for('admin_dashboard') }}">Back to Dashboard</a>
 </body>
 </html>

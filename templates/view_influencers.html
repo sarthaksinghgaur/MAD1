@@ -11,8 +11,10 @@
         <li>
             {{ influencer.name }} - {{ 'Flagged' if influencer.flagged else 'Not Flagged' }}
             <a href="{{ url_for('admin_edit_influencer', influencer_id=influencer.id) }}">Edit</a>
+            </form>
         </li>
         {% endfor %}
     </ul>
+    <a href="{{ url_for('admin_dashboard') }}">Back to Dashboard</a>
 </body>
 </html>

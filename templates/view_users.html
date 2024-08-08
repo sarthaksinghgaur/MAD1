@@ -9,10 +9,14 @@
     <ul>
         {% for user in users %}
         <li>
-            {{ user.username }} - {{ user.email }}
+           {{ user.role }} - {{ user.username }} - {{ user.email }}
             <a href="{{ url_for('admin_edit_user', user_id=user.id) }}">Edit</a>
+            <form action="{{ url_for('admin_delete_user', user_id=user.id) }}" method="post" style="display:inline;">
+                <button type="submit">Delete</button>
+            </form>
         </li>
         {% endfor %}
     </ul>
+    <a href="{{ url_for('admin_dashboard') }}">Back to Dashboard</a>
 </body>
 </html>

@@ -11,8 +11,12 @@
         <li>
             {{ campaign.name }} - {{ campaign.status }}
             <a href="{{ url_for('admin_edit_campaign', campaign_id=campaign.id) }}">Edit</a>
+            <form action="{{ url_for('admin_delete_campaign', campaign_id=campaign.id) }}" method="post" style="display:inline;">
+                <button type="submit">Delete</button>
+            </form>
         </li>
         {% endfor %}
     </ul>
+    <a href="{{ url_for('admin_dashboard') }}">Back to Dashboard</a>
 </body>
 </html>

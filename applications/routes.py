@@ -274,16 +274,14 @@ def admin_view_influencers():
 
 # Edit Routes
 @app.route('/admin/users/edit/<int:user_id>', methods=['GET', 'POST'])
+@app.route('/admin/users/edit/<int:user_id>', methods=['GET', 'POST'])
 def admin_edit_user(user_id):
     user = User.query.get_or_404(user_id)
     if request.method == 'POST':
         user.username = request.form['username']
         user.email = request.form['email']
         user.active = 'active' in request.form
-        user.first_name = request.form['first_name']
-        user.last_name = request.form['last_name']
         user.role = request.form['role']
-        user.date_of_birth = request.form['date_of_birth']
         db.session.commit()
         flash('User updated successfully!')
         return redirect(url_for('admin_dashboard'))

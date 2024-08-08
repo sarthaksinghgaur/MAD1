@@ -11,8 +11,10 @@
         <li>
             {{ sponsor.company_name }} - {{ 'Flagged' if sponsor.flagged else 'Not Flagged' }}
             <a href="{{ url_for('admin_edit_sponsor', sponsor_id=sponsor.id) }}">Edit</a>
+            </form>
         </li>
         {% endfor %}
     </ul>
+    <a href="{{ url_for('admin_dashboard') }}">Back to Dashboard</a>
 </body>
 </html>
