@@ -41,6 +41,14 @@ def startup_tasks():
         admin_user = User(id=1, username = 'admin', email='admin@admin.admin', password=generate_password_hash('adminpassword'), role='admin')
         db.session.add(admin_user)
         db.session.commit()
+
+        sponsor_user = User(id=2, username = 'sponsor', email='sponsor@sponsor.sponsor', password=generate_password_hash('sponsorpassword'), role='sponsor')
+        db.session.add(sponsor_user)
+        db.session.commit()
+
+        influencer_user = User(id=3, username = 'influencer', email='influencer@influencer.influencer', password=generate_password_hash('influencerpassword'), role='influencer')
+        db.session.add(influencer_user)
+        db.session.commit()
         
 #Home Route
 @app.route('/')
@@ -202,7 +210,7 @@ def admin_dashboard():
 
     # Fetch AdRequest statistics
     pending_ad_requests = AdRequest.query.filter(
-    AdRequest.status.in_(['Negotiations Underway from Sponsor', 'Negotiations Underway from Influencer'])).count()
+    AdRequest.status.in_(['Negotiations Underway from Sponsor', 'Negotiations Underway from influencer'])).count()
     accepted_ad_requests = AdRequest.query.filter_by(status='Accepted').count()
     rejected_ad_requests = AdRequest.query.filter_by(status='Rejected').count()
 
@@ -642,7 +650,8 @@ def edit_ad_request(ad_request_id):
     
     ad_request = AdRequest.query.get_or_404(ad_request_id)
     if request.method == 'POST':
-        ad_request.influencer_id = request.form['influencer_id']
+        ad_request.name = request.form['name']
+        ad_request.messages = request.form['messages']
         ad_request.requirements = request.form['requirements']
         ad_request.payment_amount = request.form['payment_amount']
         ad_request.status = request.form['status']
@@ -757,7 +766,6 @@ def find_influencers():
         category = request.form.get('category')
         niche = request.form.get('niche')
         reach = request.form.get('reach')
-        followers = request.form.get('followers')
 
         query = Influencer.query
         if name:
@@ -808,16 +816,15 @@ def action_influencer(influencer_id):
         return redirect(url_for('home'))
     
     influencer = Influencer.query.get_or_404(influencer_id)
-    if request.method == ['POST']: 
-        ad_request_id = request.form['ad_request_id']
-        influencer_id = request.form['influencer_id']
+    if request.method == 'POST': 
+        ad_request_id = request.form['selected_ad_request_id']
         action = request.form['action']
         
         ad_request = AdRequest.query.get_or_404(ad_request_id)
         ad_request.influencer_id = influencer_id
         ad_request.status = action
         db.session.commit()
-        flash('Ad request created successfully!')
+        flash('Influener Requested for Ad Request successfully!')
         return redirect(url_for('sponsor_dashboard'))
     
     sponsor = Sponsor.query.filter_by(user_id=user.id).first()

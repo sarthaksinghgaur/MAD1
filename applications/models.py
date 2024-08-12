@@ -12,7 +12,7 @@ class User(db.Model):
     sponsor = db.relationship('Sponsor', uselist=False, back_populates='user', cascade="all, delete-orphan")
 
     def __repr__(self):
-        return f'<User {self.username}>'
+        return f'<User {self.id} - {self.username}>'
 
 
 class Influencer(db.Model):
@@ -30,7 +30,7 @@ class Influencer(db.Model):
     ad_requests = db.relationship('AdRequest', back_populates='influencer')
 
     def __repr__(self):
-        return f'<Influencer {self.name} - {self.category}>'
+        return f'<Influencer {self.id} - {self.name}>'
 
 
 class Sponsor(db.Model):
@@ -47,7 +47,7 @@ class Sponsor(db.Model):
     ad_requests = db.relationship('AdRequest', back_populates='sponsor')
 
     def __repr__(self):
-        return f'<Sponsor {self.company_name} - {self.industry}>'
+        return f'<Sponsor {self.id} - {self.company_name}>'
 
 
 class Campaign(db.Model):
@@ -66,7 +66,7 @@ class Campaign(db.Model):
     sponsor = db.relationship('Sponsor', back_populates='campaigns')
 
     def __repr__(self):
-        return f'<Campaign {self.name} - {self.visibility}>'
+        return f'<Campaign {self.id} - {self.name} - {self.visibility}>'
 
 
 class AdRequest(db.Model):

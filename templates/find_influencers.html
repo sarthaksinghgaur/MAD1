@@ -57,7 +57,7 @@
             <td>{{ influencer.reach }}</td>
             <td>{{ influencer.platform }}</td>
             <td>{{ 'Flagged' if influencer.flagged else 'Not Flagged' }}</td>
-            <td><a href="{{ url_for('action_influencer', influencer_id=influencer.id) }}">Negotiate Ad Request</a></td>
+            <td><a href="{{ url_for('action_influencer', influencer_id=influencer.id) }}">Request Influencer</a></td>
         </tr>
         {% endfor %}
     </table>
