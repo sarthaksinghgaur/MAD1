@@ -1,0 +1,205 @@
+/* styles.css */
+
+/* Apply Papyrus font */
+body {
+  font-family: 'Papyrus', 'Arial', sans-serif;
+  color: #333;
+  background-color: #f0f0f0; /* Very light gray background */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+/* Ensure h1 uses the Papyrus font */
+h1 {
+  font-family: 'Papyrus', 'Arial', sans-serif;
+  color: #ff6f61; /* Peach color */
+  margin-top: 0;
+}
+
+/* Style flash messages */
+.flashes {
+  list-style-type: none;
+  padding: 0;
+  text-align: center;
+}
+
+.flashes li {
+  font-family: 'Papyrus', 'Arial', sans-serif;
+  background-color: #ffe5e0; /* Light peach background */
+  color: #d9534f; /* Peachy red color for text */
+  padding: 10px;
+  border-radius: 5px;
+  margin: 10px 0;
+  display: inline-block;
+}
+
+/* Style links */
+a {
+  text-decoration: none;
+  font-family: 'Papyrus', 'Arial', sans-serif;
+  color: #ff6f61; /* Peach color for links */
+  font-size: 16px;
+  margin: 10px 0; /* Add space around links */
+}
+
+/* Style for action buttons container */
+.button-container {
+  display: flex;
+  flex-wrap: wrap; /* Allows wrapping to the next line if space is limited */
+  gap: 10px; /* Adds space between buttons */
+  justify-content: center; /* Centers the buttons horizontally */
+  margin-top: 20px; /* Adds space above the button container */
+}
+
+/* Style for buttons and links container */
+.action-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px; /* Space above the action container */
+}
+
+/* Style for action buttons */
+button {
+  font-family: 'Papyrus', 'Arial', sans-serif;
+  background-color: #ff6f61; /* Peach color */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #e55d50; /* Darker peach color for hover */
+}
+
+
+/* Style for statistics section */
+.statistics {
+  background-color: #ffffff; /* White background for contrast */
+  border: 1px solid #dddddd; /* Light gray border */
+  border-radius: 8px; /* Rounded corners */
+  padding: 20px; /* Padding inside the container */
+  margin: 20px 0; /* Margin above and below the container */
+  width: 100%; /* Full width */
+  max-width: 1000px; /* Maximum width for larger screens */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Flex container for statistics */
+.statistics ul {
+  display: flex; /* Use flexbox for layout */
+  flex-wrap: wrap; /* Allow wrapping to the next line if space is limited */
+  list-style-type: none; /* Remove default list styling */
+  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */
+  gap: 10px; /* Space between boxes */
+}
+
+.statistics li {
+  background-color: #f9f9f9; /* Light gray background for each item */
+  border: 1px solid #e0e0e0; /* Light gray border */
+  border-radius: 5px; /* Rounded corners */
+  padding: 15px; /* Padding inside each box */
+  flex: 1 1 calc(33.333% - 10px); /* Three boxes per row, adjust as needed */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  color: #333; /* Dark text color */
+  min-width: 200px; /* Minimum width for each box */
+}
+
+/* Style for section headings */
+.statistics h2 {
+  font-family: 'Papyrus', 'Arial', sans-serif;
+  color: #ff6f61; /* Peach color */
+  margin-top: 0; /* Remove top margin */
+  margin-bottom: 20px; /* Space below the heading */
+}
+
+.statistics li strong {
+  color: #ff6f61; /* Peach color for labels */
+}
+
+/* General body styles for the error page */
+.error-container {
+  font-family: 'Papyrus', Arial, sans-serif;
+  color: #333;
+  text-align: center;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; 
+  width: 100vw;  
+}
+
+.error-title {
+  font-size: 72px;
+  color: #ff6347; /* Peach color for the heading */
+  margin: 0;
+}
+
+.error-message {
+  font-size: 24px;
+  color: #666;
+  margin: 20px 0;
+}
+
+.error-link {
+  font-size: 18px;
+  color: #ff6347; /* Matching peach color for links */
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+.error-link:hover {
+  border-color: #ff6347;
+}
+
+/* Style for the entire table */
+table {
+  width: 100%; /* Full width of the container */
+  border-collapse: collapse; /* Ensure borders are collapsed into a single border */
+  margin: 20px 0; /* Add space around the table */
+}
+
+/* Style for table headers */
+th {
+  background-color: #f2f2f2; /* Light gray background for headers */
+  color: #333; /* Dark text color */
+  padding: 12px; /* Add padding inside header cells */
+  text-align: left; /* Align text to the left */
+  border-bottom: 2px solid #ddd; /* Border below header cells */
+}
+
+/* Style for table data cells */
+td {
+  padding: 10px; /* Add padding inside data cells */
+  border-bottom: 1px solid #ddd; /* Border below data cells */
+  text-align: left; /* Align text to the left */
+}
+
+/* Optional: Add spacing between rows */
+tr:nth-child(even) {
+  background-color: #f9f9f9; /* Light background for even rows */
+}
+
+tr:nth-child(odd) {
+  background-color: #ffffff; /* White background for odd rows */
+}

@@ -3,14 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Influencer Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     <h1>Influencer Dashboard</h1>
     <h2>Welcome, {{ influencer.name }}</h2>
-
-    <a href="{{ url_for('find_campaigns') }}">Find Campaigns</a> <!-- Added Find Campaigns button -->
+    <!-- Flash messages section -->
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class="flashes">
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    <div>
+      <button onclick="window.location.href='{{ url_for('update_influencer_profile') }}'">Update Your Profile</button> 
+      <button onclick="window.location.href='{{ url_for('find_campaigns') }}'">Find Public Campaigns</button> 
+    </div>
     
-    <h2>Campaigns</h2>
+    <h2>Your Campaigns</h2>
     <table>
         <tr>
             <th>Campaign Name</th>
@@ -30,7 +43,7 @@
         {% endfor %}
     </table>
 
-    <h2>Ad Requests</h2>
+    <h2>Your Ad Requests</h2>
     <table>
         <tr>
             <th>Name</th>

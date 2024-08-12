@@ -3,9 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Find Influencers</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     <h1>Find Influencers</h1>
+    <!-- Flash messages section -->
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class="flashes">
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
     <form method="POST">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name">
@@ -16,11 +27,11 @@
         <label for="niche">Niche:</label>
         <input type="text" id="niche" name="niche">
         
-        <label for="reach">Reach:</label>
+        <label for="reach">Minimum Reach:</label>
         <input type="number" id="reach" name="reach">
         
-        <label for="followers">Followers:</label>
-        <input type="number" id="followers" name="followers">
+        <label for="platform">Platform:</label>
+        <input type="text" id="platform" name="platform">
         
         <button type="submit">Search</button>
     </form>
@@ -28,19 +39,25 @@
     <h2>Search Results</h2>
     <table>
         <tr>
+            <th>ID </th>
             <th>Influencer Name</th>
             <th>Category</th>
             <th>Niche</th>
             <th>Reach</th>
-            <th>Followers</th>
+            <th>Platform</th>
+            <th>Flagged</th>
+            <th>Actions</th>
         </tr>
         {% for influencer in influencers %}
         <tr>
+            <td>{{ influencer.id }}</td>
             <td>{{ influencer.name }}</td>
             <td>{{ influencer.category }}</td>
             <td>{{ influencer.niche }}</td>
             <td>{{ influencer.reach }}</td>
-            <td>{{ influencer.followers }}</td>
+            <td>{{ influencer.platform }}</td>
+            <td>{{ 'Flagged' if influencer.flagged else 'Not Flagged' }}</td>
+            <td><a href="{{ url_for('action_influencer', influencer_id=influencer.id) }}">Negotiate Ad Request</a></td>
         </tr>
         {% endfor %}
     </table>

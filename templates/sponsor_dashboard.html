@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Sponsor Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
   </head>
   <body>
     <h1>Sponsor Dashboard</h1>
@@ -22,35 +23,67 @@
     <div>
       <button onclick="window.location.href='{{ url_for('create_campaign') }}'">Create Campaign</button>
       <button onclick="window.location.href='{{ url_for('create_ad_request') }}'">Create Ad Request</button>
-      <button onclick="window.location.href='{{ url_for('find_influencers') }}'">Find Influencers</button> <!-- Added Find Influencers button -->
+      <button onclick="window.location.href='{{ url_for('find_influencers') }}'">Find Influencers</button> 
     </div>
 
-    <!-- List of campaigns -->
     <h2>Your Campaigns</h2>
-    <ul>
-      {% for campaign in campaigns %}
-        <li>
-          {{ campaign.name }}
-          <button onclick="window.location.href='{{ url_for('edit_campaign', campaign_id=campaign.id) }}'">Edit</button>
-          <form action="{{ url_for('delete_campaign', campaign_id=campaign.id) }}" method="POST" style="display:inline;">
-            <button type="submit">Delete</button>
-        </li>
-      {% endfor %}
-    </ul>
+<table>
+    <tr>
+        <th>Campaign Name</th>
+        <th>Description</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Budget</th>
+        <th>Actions</th>
+    </tr>
+    {% for campaign in campaigns %}
+    <tr>
+        <td>{{ campaign.name }}</td>
+        <td>{{ campaign.description }}</td>
+        <td>{{ campaign.start_date }}</td>
+        <td>{{ campaign.end_date }}</td>
+        <td>{{ campaign.budget }}</td>
+        <td>
+            <!-- Edit Button -->
+            <button onclick="window.location.href='{{ url_for('edit_campaign', campaign_id=campaign.id) }}'">Edit</button>
+            
+            <!-- Delete Form -->
+            <form action="{{ url_for('delete_campaign', campaign_id=campaign.id) }}" method="POST" style="display:inline;">
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
 
-    <!-- List of ad requests -->
-    <h2>Your Ad Requests</h2>
-    <ul>
-      {% for ad_request in ad_requests %}
-        <li>
-          {{ ad_request.name }}
-          <button onclick="window.location.href='{{ url_for('edit_ad_request', ad_request_id=ad_request.id) }}'">Edit</button>
-          <form action="{{ url_for('delete_ad_request', ad_request_id=ad_request.id) }}" method="POST" style="display:inline;">
-            <button type="submit">Delete</button>
-          </form>
-        </li>
-      {% endfor %}
-    </ul>
+<h2>Your Ad Requests</h2>
+<table>
+    <tr>
+      <th>Ad Request Name</th>
+      <th>Messages</th>
+      <th>Payment Amount</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+    {% for ad_request in ad_requests %}
+    <tr>
+        <td>{{ ad_request.name }}</td>
+        <td>{{ ad_request.messages }}</td>
+        <td>{{ ad_request.payment_amount }}</td>
+        <td>{{ ad_request.status }}</td>
+        <td>
+            <!-- Edit Button -->
+            <button onclick="window.location.href='{{ url_for('edit_ad_request', ad_request_id=ad_request.id) }}'">Edit</button>
+            
+            <!-- Delete Form -->
+            <form action="{{ url_for('delete_ad_request', ad_request_id=ad_request.id) }}" method="POST" style="display:inline;">
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+    
     <button onclick="location.href='{{ url_for('logout') }}'">Logout</button>
   </body>
 </html>

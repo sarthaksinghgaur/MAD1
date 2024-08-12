@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <title>Create Campaign</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
   </head>
   <body>
     <h1>Create Campaign</h1>
-    
     <!-- Flash messages section -->
     {% with messages = get_flashed_messages() %}
       {% if messages %}
@@ -17,7 +17,6 @@
         </ul>
       {% endif %}
     {% endwith %}
-    
     <form method="POST" action="{{ url_for('create_campaign') }}">
       <label for="name">Name:</label>
       <input type="text" id="name" name="name" required><br>
@@ -42,8 +41,10 @@
       
       <label for="goals">Goals:</label>
       <textarea id="goals" name="goals" required></textarea><br>
-      
-      <button type="submit">Create Campaign</button>
+      <div class = "action-container">
+        <button type="submit">Create Campaign</button>
+        <a href="{{ url_for('sponsor_dashboard') }}">Back to Dashboard</a>
+      </div>
     </form>
   </body>
 </html>

@@ -3,9 +3,20 @@
   <head>
     <meta charset="utf-8">
     <title>Sign Up</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
   </head>
   <body>
     <h1>Sign Up</h1>
+    <!-- Flash messages section -->
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class="flashes">
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
     <form method="POST" action="{{ url_for('signup') }}">
       <label for="username">Username:</label>
       <input type="text" id="username" name="username" required><br>
@@ -21,8 +32,9 @@
         <option value="influencer">Influencer</option>
         <option value="sponsor">Sponsor</option>
       </select><br>
-      
-      <button type="submit">Next</button>
+      <div class = "action-container">
+        <button type="submit">Next</button>
+      </div>
     </form>
   </body>
 </html>

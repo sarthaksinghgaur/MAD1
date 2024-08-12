@@ -19,7 +19,5 @@ app = create_app()
 from applications.routes import *
 
 if __name__ == "__main__":
-    db.drop_all()
     db.create_all()
     app.run(port=8008, debug=True)
-

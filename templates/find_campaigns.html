@@ -3,26 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>Find Campaigns</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     <h1>Find Campaigns</h1>
+    <!-- Flash messages section -->
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class="flashes">
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
     <form method="POST">
-        <label for="niche">Niche:</label>
-        <input type="text" id="niche" name="niche">
-        
-        <label for="relevance">Relevance:</label>
-        <input type="text" id="relevance" name="relevance">
-        
-        <label for="start_date">Start Date:</label>
-        <input type="date" id="start_date" name="start_date">
-        
-        <label for="end_date">End Date:</label>
-        <input type="date" id="end_date" name="end_date">
-        
-        <label for="budget">Budget:</label>
-        <input type="number" id="budget" name="budget">
-        
-        <button type="submit">Search</button>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name">
+      
+      <label for="start_date">Start Date:</label>
+      <input type="date" id="start_date" name="start_date">
+      
+      <label for="end_date">End Date:</label>
+      <input type="date" id="end_date" name="end_date">
+      
+      <label for="budget">Maximum Budget:</label>
+      <input type="number" id="budget" name="budget">
+      
+      <button type="submit">Search</button>
     </form>
 
     <h2>Search Results</h2>
@@ -33,6 +41,8 @@
             <th>Start Date</th>
             <th>End Date</th>
             <th>Budget</th>
+            <th>Goals</th>
+            <th>Actions</th>
         </tr>
         {% for campaign in campaigns %}
         <tr>
@@ -41,6 +51,8 @@
             <td>{{ campaign.start_date }}</td>
             <td>{{ campaign.end_date }}</td>
             <td>{{ campaign.budget }}</td>
+            <td>{{ campaign.goals }}</td>
+            <td><a href="{{ url_for('find_ad_requests', campaign_id=campaign.id) }}">View Available Ad Requests</a></td>
         </tr>
         {% endfor %}
     </table>

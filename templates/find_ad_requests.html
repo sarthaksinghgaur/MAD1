@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>View Ad Requests</title>
+    <title>Public Ad Requests for {{ campaign.name }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <h1>Ad Requests</h1>
+    <h1>Available Ad Requests for {{ campaign.name }}</h1>
     <!-- Flash messages section -->
     {% with messages = get_flashed_messages() %}
       {% if messages %}
@@ -17,14 +17,12 @@
         </ul>
       {% endif %}
     {% endwith %}
-    <h2>Your Ad Requests</h2>
     <table>
         <tr>
-            <th>Ad Request Name</th>
+            <th>Name</th>
             <th>Messages</th>
             <th>Requirements</th>
             <th>Payment Amount</th>
-            <th>Status</th>
             <th>Actions</th>
         </tr>
         {% for ad_request in ad_requests %}
@@ -33,19 +31,12 @@
             <td>{{ ad_request.messages }}</td>
             <td>{{ ad_request.requirements }}</td>
             <td>{{ ad_request.payment_amount }}</td>
-            <td>{{ ad_request.status }}</td>
             <td>
-                <!-- Edit Button -->
-                <button onclick="window.location.href='{{ url_for('admin_edit_ad_request', ad_request_id=ad_request.id) }}'">Edit</button>
-                
-                <!-- Delete Form -->
-                <form action="{{ url_for('admin_delete_ad_request', ad_request_id=ad_request.id) }}" method="post" style="display:inline;">
-                    <button type="submit">Delete</button>
-                </form>
+                <a href="{{ url_for('action_ad_request', id=ad_request.id) }}">Take Action</a>
             </td>
         </tr>
         {% endfor %}
     </table>
-    <a href="{{ url_for('admin_dashboard') }}">Back to Dashboard</a>
+    <a href="{{ url_for('find_campaigns') }}">Back to Campaign List</a>
 </body>
 </html>

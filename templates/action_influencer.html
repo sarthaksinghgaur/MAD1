@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Action Influencer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Do Ad Request with {{ influencer.name }}</h1>
+    <!-- Flash messages section -->
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class="flashes">
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    <!-- Display influencer details in a table -->
+    <table>
+        <tr>
+            <th>Influencer Name</th>
+            <th>Category</th>
+            <th>Niche</th>
+            <th>Reach</th>
+            <th>Platform</th>
+            <th>Flagged</th>
+        </tr>
+        <tr>
+            <td>{{ influencer.name }}</td>
+            <td>{{ influencer.category }}</td>
+            <td>{{ influencer.niche }}</td>
+            <td>{{ influencer.reach }}</td>
+            <td>{{ influencer.platform }}</td>
+            <td>{{ 'Flagged' if influencer.flagged else 'Not Flagged' }}</td>
+        </tr>
+    </table>
+    <form method="POST">
+      <label for="ad_request_id">Select Ad Request:</label>
+      <select id="ad_request_id" name="ad_request_id" required>
+          {% for ad_request in ad_requests %}
+            {% if ad_request.status == 'Available' %}
+              <option value="{{ ad_requests.id }}">{{ ad_request.name }}</option>
+            {% endif %}
+          {% endfor %}
+      </select>
+      <button type="submit" name="action" value="Requested by Sponsor">Request Influencer</button>
+  </form>
+    <a href="{{ url_for('find_influencers') }}">Back to Influencer List</a>
+</body>
+</html>

@@ -3,10 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Logout</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     <h1>Logout</h1>
-    <p>You have been logged out. Logout by mistake? <a href="{{ url_for('login') }}">Login again</a></p>
+    <!-- Flash messages section -->
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class="flashes">
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    <p>Logout by mistake? <a href="{{ url_for('login') }}">Login again</a></p>
     <p>Or go back to the <a href="{{ url_for('home') }}">Home Page</a></p>
 </body>
 </html>

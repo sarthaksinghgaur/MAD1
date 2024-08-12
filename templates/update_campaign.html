@@ -17,7 +17,7 @@
         </ul>
       {% endif %}
     {% endwith %}
-    <form method="POST" action="{{ url_for('admin_edit_campaign', campaign_id=campaign.id) }}">
+    <form method="POST" action="{{ url_for('edit_campaign', campaign_id=campaign.id) }}">
       <label for="name">Name:</label>
       <input type="text" id="name" name="name" value="{{ campaign.name }}" required><br>
       
@@ -41,12 +41,13 @@
       
       <label for="goals">Goals:</label>
       <textarea id="goals" name="goals" required>{{ campaign.goals }}</textarea><br>
-
+      
       <div class="action-container">
         <button type="submit">Update Campaign</button>
-        <a href="{{ url_for('admin_view_campaigns') }}">Back to Campaign List</a>
+        <a href="{{ url_for('sponsor_dashboard') }}">Back to Dashboard</a>
       </div>
-      
     </form>
+    <form method="POST" action="{{ url_for('delete_campaign', campaign_id=campaign.id) }}" class="action-container">
+  </form>
   </body>
 </html>

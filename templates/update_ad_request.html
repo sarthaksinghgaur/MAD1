@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Edit Ad Request</title>
+    <title>Update Ad Request</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <h1>Edit Ad Request</h1>
+    <h1>Update Ad Request</h1>
     <!-- Flash messages section -->
     {% with messages = get_flashed_messages() %}
       {% if messages %}
@@ -17,9 +17,19 @@
         </ul>
       {% endif %}
     {% endwith %}
+
     <form method="POST">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" value="{{ ad_request.name }}" required><br>
+
+        <label for="sponsor_id">Sponsor ID:</label>
+        <input type="number" id="sponsor_id" name="sponsor_id" value="{{ ad_request.sponsor_id }}" required><br>
+
+        <label for="campaign_id">Campaign ID:</label>
+        <input type="number" id="campaign_id" name="campaign_id" value="{{ ad_request.campaign_id }}" required><br>
+
+        <label for="influencer_id">Influencer ID:</label>
+        <input type="number" id="influencer_id" name="influencer_id" value="{{ ad_request.influencer_id }}" required><br>
 
         <label for="messages">Messages:</label>
         <textarea id="messages" name="messages" required>{{ ad_request.messages }}</textarea><br>
@@ -32,17 +42,15 @@
 
         <label for="status">Status:</label>
         <select id="status" name="status" required>
-            <option value="Available" {% if ad_request.status == 'Available' %}selected{% endif %}>Available</option>
-            <option value="Negotiations Underway from Influencer" {% if ad_request.status == 'Negotiations Underway from Influencer' %}selected{% endif %}>Negotiations Underway from Influencer</option>
-            <option value="Negotiations Underway from Sponsor" {% if ad_request.status == 'Negotiations Underway from Sponsor' %}selected{% endif %}>Negotiations Underway from Sponsor</option>
-            <option value="Accepted" {% if ad_request.status == 'Accepted' %}selected{% endif %}>Accepted</option>
-            <option value="Rejected" {% if ad_request.status == 'Rejected' %}selected{% endif %}>Rejected</option>
-        </select><br>
+          <option value="Available" {% if ad_request.status == 'Available' %}selected{% endif %}>Available</option>
+          <option value="Negotiations Underway from Sponsor" {% if ad_request.status == 'Negotiations Underway from Sponsor' %}selected{% endif %}>Negotiatiate</option>
+          <option value="Rejected" {% if ad_request.status == 'Rejected' %}selected{% endif %}>Rejected</option>
+      </select><br>
 
-        <div class="action-container">
-          <button type="submit">Update Ad Request</button>
-          <a href="{{ url_for('admin_view_ad_requests') }}">Back to Ad Request List</a>
-        </div>
+      <div class="action-container">
+        <button type="submit">Update Ad Request</button>
+        <a href="{{ url_for('sponsor_dashboard') }}">Back to Dashboard</a>
+       </div>
     </form>
 </body>
 </html>

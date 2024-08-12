@@ -3,18 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <title>View Influencers</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     <h1>Influencers</h1>
-    <ul>
-        {% for influencer in influencers %}
-        <li>
-            {{ influencer.name }} - {{ 'Flagged' if influencer.flagged else 'Not Flagged' }}
-            <a href="{{ url_for('admin_edit_influencer', influencer_id=influencer.id) }}">Edit</a>
-            </form>
-        </li>
-        {% endfor %}
-    </ul>
+    <!-- Flash messages section -->
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class="flashes">
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    <h2>Your Influencers</h2>
+<table>
+    <tr>
+        <th>Influencer Name</th>
+        <th>Category</th>
+        <th>Niche</th>
+        <th>Reach</th>
+        <th>Platform</th>
+        <th>Flagged</th>
+        <th>Actions</th>
+    </tr>
+    {% for influencer in influencers %}
+    <tr>
+        <td>{{ influencer.name }}</td>
+        <td>{{ influencer.category }}</td>
+        <td>{{ influencer.niche }}</td>
+        <td>{{ influencer.reach }}</td>
+        <td>{{ influencer.platform }}</td>
+        <td>{{ 'Flagged' if influencer.flagged else 'Not Flagged' }}</td>
+        <td>
+            <!-- Edit Button -->
+            <button onclick="window.location.href='{{ url_for('admin_edit_influencer', influencer_id=influencer.id) }}'">Edit</button>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
     <a href="{{ url_for('admin_dashboard') }}">Back to Dashboard</a>
 </body>
 </html>

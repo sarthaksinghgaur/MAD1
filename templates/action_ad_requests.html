@@ -3,9 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Action Ad Requests</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     <h1>Action Ad Requests</h1>
+    <!-- Flash messages section -->
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class="flashes">
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
     <table>
         <tr>
             <th>Name</th>
@@ -24,10 +35,11 @@
     </table>
     <form method="POST">
         <button type="submit" name="action" value="accept">Accept</button>
-        <button type="submit" name="action" value="reject">Reject</button>
         <input type="number" name="new_payment_amount" placeholder="New Payment Amount">
         <button type="submit" name="action" value="negotiate">Negotiate</button>
+        <button type="submit" name="action" value="reject">Reject</button>
+        
     </form>
-    <a href="{{ url_for('influencer_dashboard') }}">Back to Dashboard</a>
+    <a href="{{ url_for('find_campaigns') }}">Back to Campaigns List</a>
 </body>
 </html>

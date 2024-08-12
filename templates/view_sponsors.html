@@ -3,18 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>View Sponsors</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     <h1>Sponsors</h1>
-    <ul>
-        {% for sponsor in sponsors %}
-        <li>
-            {{ sponsor.company_name }} - {{ 'Flagged' if sponsor.flagged else 'Not Flagged' }}
-            <a href="{{ url_for('admin_edit_sponsor', sponsor_id=sponsor.id) }}">Edit</a>
-            </form>
-        </li>
-        {% endfor %}
-    </ul>
+    <!-- Flash messages section -->
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class="flashes">
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    <table>
+      <tr>
+          <th>Company Name</th>
+          <th>Industry</th>
+          <th>Budget</th>
+          <th>Flagged</th>
+          <th>Actions</th>
+      </tr>
+      {% for sponsor in sponsors %}
+      <tr>
+          <td>{{ sponsor.company_name }}</td>
+          <td>{{ sponsor.industry }}</td>
+          <td>{{ sponsor.budget }}</td>
+          <td>{{ 'Flagged' if sponsor.flagged else 'Not Flagged' }}</td>
+          <td>
+              <!-- Edit Button -->
+              <button onclick="window.location.href='{{ url_for('admin_edit_sponsor', sponsor_id=sponsor.id) }}'">Edit</button>
+          </td>
+      </tr>
+      {% endfor %}
+  </table>
     <a href="{{ url_for('admin_dashboard') }}">Back to Dashboard</a>
 </body>
 </html>

@@ -10,14 +10,14 @@
     <h1>Edit Influencer</h1>
     <!-- Flash messages section -->
     {% with messages = get_flashed_messages() %}
-    {% if messages %}
-      <ul class="flashes">
-        {% for message in messages %}
-          <li>{{ message }}</li>
-        {% endfor %}
-      </ul>
-    {% endif %}
-  {% endwith %}
+      {% if messages %}
+        <ul class="flashes">
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
     <form method="POST">
         <div>
             <label for="name">Name:</label>
@@ -40,17 +40,13 @@
             <input type="text" id="platform" name="platform" value="{{ influencer.platform }}" required>
         </div>
         <div>
-            <label for="engagement_rate">Engagement Rate:</label>
-            <input type="number" step="0.01" id="engagement_rate" name="engagement_rate" value="{{ influencer.engagement_rate }}" required>
-        </div>
-        <div>
             <label for="flagged">Flagged:</label>
             <input type="checkbox" id="flagged" name="flagged" {% if influencer.flagged %}checked{% endif %}>
         </div>
-        <div>
+        <div class="action-container">
             <button type="submit">Update Influencer</button>
+            <a href="{{ url_for('admin_view_influencers') }}">Back to Influencer List</a>
         </div>
     </form>
-    <a href="{{ url_for('admin_view_influencers') }}">Back to Influencer List</a>
 </body>
 </html>

@@ -3,20 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <title>View Users</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     <h1>Users</h1>
-    <ul>
-        {% for user in users %}
-        <li>
-           {{ user.role }} - {{ user.username }} - {{ user.email }}
-            <a href="{{ url_for('admin_edit_user', user_id=user.id) }}">Edit</a>
-            <form action="{{ url_for('admin_delete_user', user_id=user.id) }}" method="post" style="display:inline;">
-                <button type="submit">Delete</button>
-            </form>
-        </li>
-        {% endfor %}
-    </ul>
+    <!-- Flash messages section -->
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class="flashes">
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    <table>
+      <tr>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Active</th>
+          <th>Actions</th>
+      </tr>
+      {% for user in users %}
+      <tr>
+          <td>{{ user.username }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.role }}</td>
+          <td>{{ 'Yes' if user.active else 'No' }}</td>
+          <td>
+              <!-- Edit Button -->
+              <button onclick="window.location.href='{{ url_for('admin_edit_user', user_id=user.id) }}'">Edit</button>
+              
+              <!-- Delete Form -->
+              <form action="{{ url_for('admin_delete_user', user_id=user.id) }}" method="post" style="display:inline;">
+                  <button type="submit">Delete</button>
+              </form>
+          </td>
+      </tr>
+      {% endfor %}
+  </table>
     <a href="{{ url_for('admin_dashboard') }}">Back to Dashboard</a>
 </body>
 </html>

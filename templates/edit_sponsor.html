@@ -8,16 +8,16 @@
 </head>
 <body>
     <h1>Edit Sponsor</h1>
-        <!-- Flash messages section -->
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-          <ul class="flashes">
-            {% for message in messages %}
-              <li>{{ message }}</li>
-            {% endfor %}
-          </ul>
-        {% endif %}
-      {% endwith %}
+    <!-- Flash messages section -->
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class="flashes">
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
     <form method="POST">
         <div>
             <label for="company_name">Company Name:</label>
@@ -35,10 +35,10 @@
             <label for="flagged">Flagged:</label>
             <input type="checkbox" id="flagged" name="flagged" {% if sponsor.flagged %}checked{% endif %}>
         </div>
-        <div>
+        <div class="action-container">
             <button type="submit">Update Sponsor</button>
+            <a href="{{ url_for('admin_view_sponsors') }}">Back to Sponsors List</a>
         </div>
     </form>
-    <a href="{{ url_for('admin_view_sponsors') }}">Back to Sponsors List</a>
 </body>
 </html>
